@@ -16,6 +16,8 @@ $template = filter_var($_GET['template'], FILTER_SANITIZE_STRING);
 $calendar = new Parser\Calendar($src);
 $calendar->parse();
 
+$calendar->cutMultiDaysEvent();
+
 $firstDayOfMonth = (new \DateTime($month))
     ->modify('first day of this month')
     ->setTime(0, 0, 0);

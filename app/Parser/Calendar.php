@@ -56,6 +56,32 @@ class Calendar
         }
     }
 
+    public function cutMultiDaysEvent()
+    {
+        foreach ($this->events as $id => $event) {
+            if (isset($event->DTEND)) {
+                $tsStart = $event->DTSTART->getTimestamp();
+                $tsEnd = $event->DTEND->getTimestamp();
+                if (($tsEnd - $tsStart) > 24*60*60) {
+                    unset($this->events[$id]);
+
+                    $eventStart = $event->DTSTART;
+                    $newEvents = array();
+
+                    while ($eventStart < $event->DTEND) {
+                        $newEvent = new Event();
+                        $newEvent->SUMMARY = $event->SUMMARY;
+                        $newEvent->DTSTART = clone $eventStart;
+                        $eventStart->modify('+1 day')->setTime(0, 0, 0);
+                        $newEvent->DTEND = clone $eventStart;
+                        $newEvents[] = $newEvent;
+                    }
+                    $this->events = array_merge($this->events, $newEvents);
+                }
+            }
+        }
+    }
+
     public function getAllEvents()
     {
         return $this->events;
