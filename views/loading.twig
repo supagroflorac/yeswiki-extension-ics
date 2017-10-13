@@ -1,0 +1,36 @@
+<style>
+  #icsCalendar {
+    background: #8bb860;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+</style>
+
+<script type="text/javascript">
+  document.onreadystatechange = function() {
+    updateIcsCalendar('tools/ics/show.php?src={{ src }}&template={{ template }}');
+  }
+
+  function updateIcsCalendar(url) {
+    var req = false;
+    req = new XMLHttpRequest();
+
+    req.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("icsCalendar").innerHTML = this.responseText;
+      }
+    };
+
+    req.open('GET', url, true);
+    req.send(null);
+  }
+</script>
+
+<div id='icsCalendar'>
+  <img src='tools/ics/presentation/images/loading.gif' alt='loading'/>
+</div>

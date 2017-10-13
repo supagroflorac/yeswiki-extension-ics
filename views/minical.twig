@@ -1,0 +1,80 @@
+<style>
+  table.icsMinical * {
+    box-sizing: border-box;
+  }
+
+  table.icsMinical {
+    padding: 10px;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  table.icsMinical tr:first-child td {
+    font-weight: bolder;
+    padding-top: 5px;
+  }
+
+  .icsMinical td {
+    text-align: center;
+    color: #eee;
+  }
+
+  .icsMinical td.event {
+    font-weight: bolder;
+    color: #23527c;
+  }
+
+  .icsMinical th {
+    text-align: center;
+  }
+
+  .eventSpan {
+    display: none;
+    background: white;
+    padding: 10px;
+    border: 1px #8bb860 solid;
+    border-radius: 5px;
+    text-align: left;
+    z-index: 999;
+  }
+
+  .icsMinical td.event:hover {
+    background-color: #eee;
+    color: black;
+  }
+
+  .icsMinical td.event:hover .eventSpan {
+    display: inline;
+    position: absolute;
+  }
+
+</style>
+
+<table class='icsMinical'>
+  <thead>
+    <tr>
+      <th colspan='7'>
+        <a href='#' onclick="updateIcsCalendar('{{ prevMonth }}'); return false;">&#60;&#60;</a>
+         {{ title }}
+        <a href='#' onclick="updateIcsCalendar('{{ nextMonth }}'); return false;">&#62;&#62;</a>
+      </th>
+    </tr>
+  </thead>
+  {% for week in calendar %}
+    <tr>
+      {% for day in week %}
+        <td {% if not day.texts is empty %} class='event' {% endif %}>
+          {{ day.number }}
+          {% if not day.texts is empty %}
+            <span class='eventSpan'>
+              {% for text in day.texts %}
+                {{ text }}<br/>
+              {% endfor %}
+            </span>
+          {% endif %}
+        </td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+</tbody>
+</table>

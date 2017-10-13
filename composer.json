@@ -1,0 +1,22 @@
+{
+    "name": "yeswiki/ics",
+    "description": "Affiche un calendrier ICS",
+    "type": "extension YesWiki",
+    "require": {
+        "twig/twig": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ics\\": "app",
+            "Ics\\Parser\\": "app/Parser",
+            "Ics\\Views\\": "app/Views"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Florestan Bredow",
+            "email": "florestan.bredow@supagro.fr"
+        }
+    ]
+}
