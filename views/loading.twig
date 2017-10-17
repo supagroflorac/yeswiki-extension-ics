@@ -14,9 +14,9 @@
 </style>
 
 <script type="text/javascript">
-  document.onreadystatechange = function() {
+  document.addEventListener("DOMContentLoaded", function() {
     updateIcsCalendar('tools/ics/show.php?src={{ src }}&template={{ template }}');
-  }
+  });
 
   function updateIcsCalendar(url) {
     var req = false;
