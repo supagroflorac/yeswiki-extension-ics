@@ -49,15 +49,25 @@
     display: inline;
   }
 
+  a.prevMonth {
+    float: left;
+    margin-left: 10px;
+  }
+
+  a.nextMonth {
+    float: right;
+    margin-right: 10px;
+  }
+
 </style>
 
 <table class='icsMinical'>
   <thead>
     <tr>
       <th colspan='7'>
-        <a href='#' onclick="updateIcsCalendar('{{ prevMonth }}'); return false;">&#60;&#60;</a>
+        <a class="prevMonth" href='#' onclick="updateIcsCalendar('{{ prevMonth }}'); return false;">&#60;&#60;</a>
          {{ title }}
-        <a href='#' onclick="updateIcsCalendar('{{ nextMonth }}'); return false;">&#62;&#62;</a>
+        <a class="nextMonth" href='#' onclick="updateIcsCalendar('{{ nextMonth }}'); return false;">&#62;&#62;</a>
       </th>
     </tr>
   </thead>
